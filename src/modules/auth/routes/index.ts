@@ -1,4 +1,6 @@
-export default [
+import { RouteRecordRaw } from "vue-router";
+
+const AuthRoutes: Array<RouteRecordRaw> = [
   {
     path: "login",
     name: "Login",
@@ -16,3 +18,5 @@ export default [
     component: () => import("../pages/Register.vue"),
   },
 ];
+
+export default AuthRoutes;

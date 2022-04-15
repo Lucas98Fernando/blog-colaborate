@@ -14,27 +14,3 @@
     </div>
   </div>
 </template>
-
-<style lang="scss">
-  .auth-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    width: 100%;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    .card-auth {
-      text-align: center;
-      border-radius: 20px;
-    }
-    .logo {
-      max-width: 80px;
-      margin: 0 auto;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-  }
-</style>

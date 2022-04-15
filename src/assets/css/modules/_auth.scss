@@ -1,0 +1,38 @@
+.auth-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  @include responsive(sm) {
+    grid-template-columns: 1fr;
+  }
+  .content-left {
+    @include responsive(sm) {
+      display: none;
+    }
+  }
+  .content-right {
+    position: relative;
+  }
+  .card-auth {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 350px;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .logo {
+    max-width: 80px;
+    margin: 0 auto;
+  }
+}

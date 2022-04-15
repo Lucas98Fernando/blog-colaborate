@@ -1,9 +1,12 @@
-import { default as authRoutes } from "@/modules/auth/routes";
+import { RouteRecordRaw } from "vue-router";
+import AuthRoutes from "@/modules/auth/routes";
 
-export default [
+const AuthLayoutRoutes: Array<RouteRecordRaw> = [
   {
     path: "/auth",
     component: () => import("./AuthLayout.vue"),
-    children: [...authRoutes],
+    children: [...AuthRoutes],
   },
 ];
+
+export default AuthLayoutRoutes;
