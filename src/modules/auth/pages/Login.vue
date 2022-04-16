@@ -4,11 +4,11 @@
 
   const $q = useQuasar();
 
-  const name = ref(null);
-  const age = ref(null);
+  const email = ref<string>("");
+  const password = ref<string>("");
 
   const onSubmit = () => {
-    if (!name.value) {
+    if (!email.value) {
       $q.notify({
         color: "red-5",
         textColor: "white",
@@ -24,41 +24,60 @@
       });
     }
   };
-
-  const onReset = () => {
-    name.value = null;
-    age.value = null;
-  };
 </script>
 
 <template>
-  <h6>Faça o seu login</h6>
-  <q-form class="q-gutter-md" @submit="onSubmit" @reset="onReset">
+  <h5 class="q-my-sm text-primary text-weight-medium">Bem-vindo de volta</h5>
+  <div class="q-mb-lg">Faça o seu login</div>
+  <q-form class="q-gutter-sm" @submit="onSubmit">
     <q-input
-      v-model="name"
-      label="Your name *"
-      hint="Name and surname"
+      v-model="email"
+      label="E-mail"
+      placeholder="Ex: lucas@gmail.com"
       lazy-rules
       rounded
       outlined
       :rules="[(val) => (val && val.length > 0) || 'Please type something']"
-    />
+    >
+      <template #prepend>
+        <q-icon name="mail_outline" />
+      </template>
+    </q-input>
 
     <q-input
-      v-model="age"
-      filled
-      type="number"
-      label="Your age *"
+      v-model="password"
+      label="Senha"
       lazy-rules
+      outlined
+      rounded
       :rules="[
         (val) => (val !== null && val !== '') || 'Please type your age',
         (val) => (val > 0 && val < 100) || 'Please type a real age',
       ]"
-    />
+    >
+      <template #prepend>
+        <q-icon name="lock_outline" />
+      </template>
+    </q-input>
 
     <div>
-      <q-btn label="Submit" type="submit" color="primary" />
-      <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
+      <q-btn
+        class="full-width"
+        rounded
+        type="submit"
+        padding="12px 0"
+        color="primary"
+      >
+        <q-icon size="1.3rem" left name="login" />
+        Entrar
+      </q-btn>
+    </div>
+
+    <div class="q-mt-lg q-ml-md">
+      <span>
+        Ainda não possui conta ?
+        <router-link to="/auth/register">Cadastrar-se</router-link>
+      </span>
     </div>
   </q-form>
 </template>

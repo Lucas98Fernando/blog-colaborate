@@ -1,3 +1,5 @@
+// Be careful, the order of the imports is important!
+@import "../fonts/poppins.scss";
 @import "./modules/global";
 @import "./mixins/responsive";
 @import "./modules/auth";

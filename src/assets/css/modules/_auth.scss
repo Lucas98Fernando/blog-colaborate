@@ -5,11 +5,11 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   @include responsive(sm) {
     grid-template-columns: 1fr;
   }
   .content-left {
+    padding: 3rem 0 0 5rem;
     @include responsive(sm) {
       display: none;
     }
@@ -18,11 +18,7 @@
     position: relative;
   }
   .card-auth {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    margin: 0 auto;
     border-radius: 20px;
     max-width: 400px;
     width: 350px;
