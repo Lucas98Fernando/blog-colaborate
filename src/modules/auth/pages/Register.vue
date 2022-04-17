@@ -1,36 +1,18 @@
 <script lang="ts" setup>
-  import { useQuasar } from "quasar";
   import { ref } from "vue";
-
-  const $q = useQuasar();
+  import BaseInputText from "@/shared/Inputs/BaseInputText.vue";
+  import BaseInputPassword from "@/shared/Inputs/BaseInputPassword.vue";
 
   const name = ref<string>("");
   const email = ref<string>("");
   const password = ref<string>("");
-
-  const onSubmit = () => {
-    if (!name.value) {
-      $q.notify({
-        color: "red-5",
-        textColor: "white",
-        icon: "warning",
-        message: "You need to accept the license and terms first",
-      });
-    } else {
-      $q.notify({
-        color: "green-4",
-        textColor: "white",
-        icon: "cloud_done",
-        message: "Submitted",
-      });
-    }
-  };
+  const passwordConfirm = ref<string>("");
 </script>
 
 <template>
   <h5 class="q-my-sm text-primary text-weight-medium">Criar conta</h5>
   <div class="q-mb-lg">Cadastre-se gratuitamente</div>
-  <q-form class="q-gutter-sm" @submit="onSubmit">
+  <q-form class="q-gutter-sm">
     <q-input
       v-model="name"
       label="Nome"
@@ -45,35 +27,15 @@
       </template>
     </q-input>
 
-    <q-input
+    <base-input-text
       v-model="email"
       label="E-mail"
-      placeholder="Ex: lucas@gmail.com"
-      lazy-rules
-      rounded
-      outlined
-      :rules="[(val) => (val && val.length > 0) || 'Please type something']"
-    >
-      <template #prepend>
-        <q-icon name="mail_outline" />
-      </template>
-    </q-input>
+      prepend-icon="mail_outline"
+    />
 
-    <q-input
-      v-model="password"
-      label="Senha"
-      lazy-rules
-      outlined
-      rounded
-      :rules="[
-        (val) => (val !== null && val !== '') || 'Please type your age',
-        (val) => (val > 0 && val < 100) || 'Please type a real age',
-      ]"
-    >
-      <template #prepend>
-        <q-icon name="lock_outline" />
-      </template>
-    </q-input>
+    <base-input-password v-model="password" label="Senha" />
+
+    <base-input-password v-model="passwordConfirm" label="Confirmar senha" />
 
     <div>
       <q-btn
