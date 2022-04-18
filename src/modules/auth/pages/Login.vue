@@ -14,6 +14,7 @@
     <base-input-text
       v-model="email"
       label="E-mail"
+      placeholder="Ex: lucas@gmail.com"
       prepend-icon="mail_outline"
     />
 

@@ -5,6 +5,7 @@
   const props = defineProps({
     prependIcon: { type: String, default: "" },
     validationOption: { type: String, default: "" },
+    noValidation: { type: Boolean, default: false },
   });
 
   const modelValue = ref<string>("");
@@ -14,10 +15,10 @@
   <q-input
     v-model="modelValue"
     v-bind="$attrs"
+    :rules="!noValidation ? simpleValidation : []"
     lazy-rules
     rounded
     outlined
-    :rules="simpleValidation"
   >
     <template #prepend>
       <q-icon :name="props.prependIcon" />

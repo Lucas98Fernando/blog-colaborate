@@ -8,9 +8,13 @@
   const modelValue = ref<string>("");
   const inputType = ref<string>("password");
 
-  const inputTypeChange = computed(() => {
-    return inputType.value === "password" ? "password" : "text";
-  });
+  const inputTypeChange = computed(() =>
+    inputType.value === "password" ? "password" : "text"
+  );
+
+  const inputIcon = computed(() =>
+    inputType.value === "password" ? "visibility_off" : "visibility"
+  );
 
   function toggleInputType() {
     return inputType.value === "password"
@@ -24,17 +28,17 @@
     v-model="modelValue"
     v-bind="$attrs"
     :type="inputTypeChange"
+    :rules="[...simpleValidation, ...passwordStrengthValidation]"
     lazy-rules
     outlined
     rounded
-    :rules="[...simpleValidation, ...passwordStrengthValidation]"
   >
     <template #prepend>
       <q-icon name="lock_outline" />
     </template>
     <template #append>
       <q-icon
-        name="visibility"
+        :name="inputIcon"
         style="cursor: pointer"
         @click="toggleInputType"
       />

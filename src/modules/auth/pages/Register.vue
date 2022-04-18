@@ -13,23 +13,17 @@
   <h5 class="q-my-sm text-primary text-weight-medium">Criar conta</h5>
   <div class="q-mb-lg">Cadastre-se gratuitamente</div>
   <q-form class="q-gutter-sm">
-    <q-input
+    <base-input-text
       v-model="name"
       label="Nome"
       placeholder="Ex: Lucas Fernando"
-      lazy-rules
-      rounded
-      outlined
-      :rules="[(val) => (val && val.length > 0) || 'Please type something']"
-    >
-      <template #prepend>
-        <q-icon name="person_outline" />
-      </template>
-    </q-input>
+      prepend-icon="person_outline"
+    />
 
     <base-input-text
       v-model="email"
       label="E-mail"
+      placeholder="Ex: lucas@gmail.com"
       prepend-icon="mail_outline"
     />
 
