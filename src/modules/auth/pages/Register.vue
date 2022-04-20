@@ -1,18 +1,31 @@
 <script lang="ts" setup>
   import { ref } from "vue";
-  import BaseInputText from "@/shared/Inputs/BaseInputText.vue";
-  import BaseInputPassword from "@/shared/Inputs/BaseInputPassword.vue";
+  import { QForm } from "quasar";
+  import BaseInputText from "@/shared/inputs/BaseInputText.vue";
+  import BaseInputPassword from "@/shared/inputs/BaseInputPassword.vue";
 
+  const form = ref<QForm | null>(null);
   const name = ref<string>("");
   const email = ref<string>("");
   const password = ref<string>("");
   const passwordConfirm = ref<string>("");
+  const isBtnDisabled = ref<boolean>(true);
+
+  function validate() {
+    form.value?.validate().then((success) => {
+      if (success) {
+        isBtnDisabled.value = false;
+      } else {
+        isBtnDisabled.value = true;
+      }
+    });
+  }
 </script>
 
 <template>
   <h5 class="q-my-sm text-primary text-weight-medium">Criar conta</h5>
   <div class="q-mb-lg">Cadastre-se gratuitamente</div>
-  <q-form class="q-gutter-sm">
+  <q-form ref="form" class="q-gutter-sm" @change="validate" @input="validate">
     <base-input-text
       v-model="name"
       label="Nome"
@@ -25,6 +38,7 @@
       label="E-mail"
       placeholder="Ex: lucas@gmail.com"
       prepend-icon="mail_outline"
+      validation-type="email"
     />
 
     <base-input-password v-model="password" label="Senha" />
@@ -39,6 +53,7 @@
         padding="12px 0"
         color="primary"
         label="Cadastrar"
+        :disable="isBtnDisabled"
       />
     </div>
 

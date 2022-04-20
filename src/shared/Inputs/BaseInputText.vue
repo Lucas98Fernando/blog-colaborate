@@ -1,21 +1,36 @@
 <script lang="ts" setup>
-  import { ref } from "vue";
-  import { simpleValidation } from "./validations/InputValidations";
+  import { computed, ref } from "vue";
+  import {
+    simpleValidation,
+    emailValidation,
+  } from "./validations/InputValidations";
+
+  const modelValue = ref<string>("");
 
   const props = defineProps({
     prependIcon: { type: String, default: "" },
-    validationOption: { type: String, default: "" },
-    noValidation: { type: Boolean, default: false },
+    validationType: { type: String, default: "" },
   });
 
-  const modelValue = ref<string>("");
+  const setValidation = computed(() => {
+    if (props.validationType === "email")
+      return [...simpleValidation, ...emailValidation];
+    if (props.validationType === "none") return [];
+    else return [...simpleValidation];
+  });
+
+  const setDefaultSpacing = computed(() => {
+    if (props.validationType === "none") return "q-mb-lg";
+    else return "";
+  });
 </script>
 
 <template>
   <q-input
     v-model="modelValue"
     v-bind="$attrs"
-    :rules="!noValidation ? simpleValidation : []"
+    :class="setDefaultSpacing"
+    :rules="setValidation"
     lazy-rules
     rounded
     outlined
