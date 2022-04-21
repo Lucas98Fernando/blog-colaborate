@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import storage from "@/helpers/storage";
 import { useRouter } from "vue-router";
+import eventBus from "@/helpers/eventBus";
 
 const router = useRouter();
 const loginPage = "/auth/login";
@@ -24,6 +25,7 @@ api.interceptors.response.use(
     console.log(error.response);
     switch (error.response.status) {
       case 400:
+        eventBus.emit("show-base-dialog");
         break;
       case 401:
         router.push(loginPage);
