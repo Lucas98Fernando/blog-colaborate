@@ -4,7 +4,7 @@ export const simpleValidation = [
 
 export const passwordStrengthValidation = [
   (val: string) =>
-    (val && val.length >= 8) || "A senha deve conter no mínimo 8 caracteres",
+    (val && val.length >= 6) || "A senha deve conter no mínimo 6 caracteres",
 ];
 
 export const emailValidation = [

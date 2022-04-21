@@ -9,14 +9,13 @@
   const email = ref<string>("");
   const password = ref<string>("");
   const passwordConfirm = ref<string>("");
-  const isBtnDisabled = ref<boolean>(true);
 
   function validate() {
     form.value?.validate().then((success) => {
       if (success) {
-        isBtnDisabled.value = false;
+        alert("Tudo certo");
       } else {
-        isBtnDisabled.value = true;
+        alert("Erro");
       }
     });
   }
@@ -25,7 +24,7 @@
 <template>
   <h5 class="q-my-sm text-primary text-weight-medium">Criar conta</h5>
   <div class="q-mb-lg">Cadastre-se gratuitamente</div>
-  <q-form ref="form" class="q-gutter-sm" @change="validate" @input="validate">
+  <q-form ref="form" class="q-gutter-sm" @submit.prevent="validate">
     <base-input-text
       v-model="name"
       label="Nome"
@@ -53,7 +52,6 @@
         padding="12px 0"
         color="primary"
         label="Cadastrar"
-        :disable="isBtnDisabled"
       />
     </div>
 

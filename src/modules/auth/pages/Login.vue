@@ -1,38 +1,48 @@
 <script lang="ts" setup>
-  import { ref } from "vue";
+  import { reactive, ref } from "vue";
   import { QForm } from "quasar";
+  import { authStore } from "@/modules/auth/store/auth";
   import BaseInputText from "@/shared/inputs/BaseInputText.vue";
   import BaseInputPassword from "@/shared/inputs/BaseInputPassword.vue";
 
   const form = ref<QForm | null>(null);
-  const email = ref<string>("");
-  const password = ref<string>("");
-  const isBtnDisabled = ref<boolean>(true);
+  const isBtnLoading = ref<boolean>(false);
+  const auth = authStore();
+  const formData = reactive({
+    email: "",
+    password: "",
+  });
 
   function validate() {
-    form.value?.validate().then((success) => {
-      if (success) {
-        isBtnDisabled.value = false;
-      } else {
-        isBtnDisabled.value = true;
-      }
+    return form.value?.validate().then((success) => {
+      if (success) handlerLogin();
+      else alert("Algo deu errado!");
     });
+  }
+
+  async function handlerLogin() {
+    try {
+      isBtnLoading.value = true;
+      await auth.ActionLogin(formData);
+    } finally {
+      isBtnLoading.value = false;
+    }
   }
 </script>
 
 <template>
   <h5 class="q-my-sm text-primary text-weight-medium">Bem-vindo de volta</h5>
   <div class="q-mb-lg">Faça o seu login</div>
-  <q-form ref="form" class="q-gutter-sm" @change="validate" @input="validate">
+  <q-form ref="form" class="q-gutter-sm" @submit.prevent="validate">
     <base-input-text
-      v-model="email"
+      v-model="formData.email"
       label="E-mail"
       placeholder="Ex: lucas@gmail.com"
       prepend-icon="mail_outline"
       validation-type="email"
     />
 
-    <base-input-password v-model="password" label="Senha" />
+    <base-input-password v-model="formData.password" label="Senha" />
 
     <div>
       <q-btn
@@ -41,9 +51,12 @@
         type="submit"
         padding="12px 0"
         color="primary"
-        :disable="isBtnDisabled"
+        :loading="isBtnLoading"
       >
         <q-icon size="1.3rem" left name="login" />
+        <template #loading>
+          <q-spinner-facebook />
+        </template>
         Entrar
       </q-btn>
     </div>
