@@ -2,9 +2,9 @@ import { defineStore } from "pinia";
 import authServices from "../services/auth";
 import { ILoginRequest } from "../types/auth";
 
-export const authStore = defineStore("authStore", {
+export const authStore = defineStore("auth", {
   state: () => ({
-    token: {},
+    user: {},
   }),
   actions: {
     ActionLogin(payload: ILoginRequest) {

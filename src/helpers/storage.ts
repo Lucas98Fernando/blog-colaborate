@@ -5,7 +5,7 @@ class Storage {
     return localStorage.getItem(this.token);
   }
   setLocalAccessToken(payload: string): void {
-    localStorage.setItem(this.token, payload);
+    localStorage.setItem(this.token, JSON.stringify(payload));
   }
   removeLocalAccessToken(): void {
     localStorage.removeItem(this.token);

@@ -1,43 +1,13 @@
 import axios, { AxiosInstance } from "axios";
-import storage from "@/helpers/storage";
-import { useRouter } from "vue-router";
-import eventBus from "@/helpers/eventBus";
+import { errorResponse } from "./interceptors/response";
+import { configRequest } from "./interceptors/request";
 
-const router = useRouter();
-const loginPage = "/auth/login";
-
+// Creating an instance of axios
 export const api: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 });
 
-api.interceptors.request.use(
-  (config) => {
-    const token: string = storage.getLocalAccessToken() || "";
-    if (token) config.headers = { Authorization: `Bearer ${token}` };
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
-
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    console.log(error.response);
-    switch (error.response.status) {
-      case 400:
-        eventBus.emit("show-base-dialog");
-        break;
-      case 401:
-        router.push(loginPage);
-        break;
-      case 403:
-        router.push(loginPage);
-        break;
-      case 404:
-        break;
-      default:
-        router.push(loginPage);
-    }
-    return Promise.reject(error);
-  }
-);
+// Interceptors for requests
+api.interceptors.request.use(configRequest, (error) => Promise.reject(error));
+// Interceptors for responses
+api.interceptors.response.use((response) => response, errorResponse);
