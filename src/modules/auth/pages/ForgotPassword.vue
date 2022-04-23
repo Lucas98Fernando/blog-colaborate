@@ -2,29 +2,27 @@
   import { reactive, ref } from "vue";
   import { QForm } from "quasar";
   import { authStore } from "@/modules/auth/store/auth";
-  import { ILoginRequest } from "../types/auth";
   import BaseInputText from "@/shared/inputs/BaseInputText.vue";
-  import BaseInputPassword from "@/shared/inputs/BaseInputPassword.vue";
+  import { IForgotPasswordRequest } from "../types/auth";
 
   const form = ref<QForm | null>(null);
   const isBtnLoading = ref<boolean>(false);
   const auth = authStore();
-  const formData = reactive<ILoginRequest>({
+  const formData = reactive<IForgotPasswordRequest>({
     email: "",
-    password: "",
   });
 
   function validate() {
     return form.value?.validate().then((success) => {
-      if (success) handlerLogin();
+      if (success) handlerForgotPassword();
       else alert("Algo deu errado!");
     });
   }
 
-  async function handlerLogin() {
+  async function handlerForgotPassword() {
     try {
       isBtnLoading.value = true;
-      await auth.ActionLogin(formData);
+      await auth.ActionForgotPassword(formData);
     } finally {
       isBtnLoading.value = false;
     }
@@ -32,8 +30,8 @@
 </script>
 
 <template>
-  <h5 class="q-my-sm text-primary text-weight-medium">Bem-vindo de volta</h5>
-  <div class="q-mb-lg">Faça o seu login</div>
+  <h5 class="q-my-sm text-primary text-weight-medium">Recuperação de conta</h5>
+  <div class="q-mb-lg">Informe o seu e-mail para recuperação</div>
   <q-form ref="form" class="q-gutter-sm" @submit.prevent="validate">
     <base-input-text
       v-model="formData.email"
@@ -42,12 +40,6 @@
       prepend-icon="mail_outline"
       validation-type="email"
     />
-
-    <base-input-password v-model="formData.password" label="Senha" />
-
-    <div class="q-mb-md q-ml-md">
-      <router-link to="/auth/forgot-password">Esqueceu sua senha ?</router-link>
-    </div>
 
     <div>
       <q-btn
@@ -58,18 +50,18 @@
         color="primary"
         :loading="isBtnLoading"
       >
-        <q-icon size="1.3rem" left name="login" />
         <template #loading>
           <q-spinner-facebook />
         </template>
-        Entrar
+        Enviar e-mail
+        <q-icon size="1.3rem" right name="send" />
       </q-btn>
     </div>
 
     <div class="q-mt-lg q-ml-md">
       <span>
-        Ainda não possui conta ?
-        <router-link to="/auth/register">Cadastrar-se</router-link>
+        Já recuperou a conta ?
+        <router-link to="/auth/login">Fazer login</router-link>
       </span>
     </div>
   </q-form>

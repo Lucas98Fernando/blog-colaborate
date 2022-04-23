@@ -17,6 +17,14 @@ const AuthRoutes: Array<RouteRecordRaw> = [
     },
     component: () => import("../pages/Register.vue"),
   },
+  {
+    path: "forgot-password",
+    name: "Forgot password",
+    meta: {
+      title: "Recuperação de conta",
+    },
+    component: () => import("../pages/ForgotPassword.vue"),
+  },
 ];
 
 export default AuthRoutes;

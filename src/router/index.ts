@@ -16,7 +16,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  document.title = `Blog colaborate - ${to.meta.title}`;
+  document.title = `Blog Colaborate - ${to.meta.title}`;
   AuthMiddleware(router, to, next);
 });
 

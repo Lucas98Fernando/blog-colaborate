@@ -22,3 +22,7 @@ export enum UserType {
   admin = 1,
   author = 2,
 }
+
+export type IForgotPasswordRequest = {
+  email: string;
+};

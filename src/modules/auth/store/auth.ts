@@ -1,6 +1,11 @@
 import { defineStore } from "pinia";
 import authServices from "../services/auth";
-import { ILoginRequest, ILoginResponse, IRegisterRequest } from "../types/auth";
+import {
+  IForgotPasswordRequest,
+  ILoginRequest,
+  ILoginResponse,
+  IRegisterRequest,
+} from "../types/auth";
 
 export const authStore = defineStore("auth", {
   state: () => ({
@@ -14,6 +19,9 @@ export const authStore = defineStore("auth", {
     },
     ActionRegister(payload: IRegisterRequest) {
       return authServices.register(payload);
+    },
+    ActionForgotPassword(payload: IForgotPasswordRequest) {
+      return authServices.forgotPassword(payload);
     },
   },
 });

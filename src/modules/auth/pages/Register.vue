@@ -36,7 +36,7 @@
   }
 
   const passwordMatch = [
-    (val: string) => val === formData.password || "As senhas não coicidem",
+    (val: string) => val === formData.password || "As senhas não coincidem",
   ];
 </script>
 

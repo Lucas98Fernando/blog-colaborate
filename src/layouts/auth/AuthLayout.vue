@@ -6,10 +6,13 @@
 
   const pathImageLogin = "/images/illustrations/man-works-bg-blue.png";
   const pathImageRegister = "/images/illustrations/girl-with-cup-bg-blue.png";
+  const pathImageForgotPassword =
+    "/images/illustrations/boy-writing-to-notebook-bg-blue.png";
   const setImage = ref<string>("");
 
   if (route.path === "/auth/login") setImage.value = pathImageLogin;
-  else setImage.value = pathImageRegister;
+  else if (route.path === "/auth/register") setImage.value = pathImageRegister;
+  else setImage.value = pathImageForgotPassword;
 </script>
 
 <template>

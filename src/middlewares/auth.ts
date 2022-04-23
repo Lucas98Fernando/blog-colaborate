@@ -7,7 +7,7 @@ export default async function AuthMiddleware(
   next: NavigationGuardNext
 ): Promise<void> {
   const token: string = storage.getLocalAccessToken() || "";
-  const guestRoutes = ["Login", "Register"];
+  const guestRoutes: string[] = ["Login", "Register", "Forgot password"];
 
   if (!token && !guestRoutes.includes(String(to.name)))
     router.replace({ name: guestRoutes[0] });
