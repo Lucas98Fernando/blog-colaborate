@@ -2,13 +2,14 @@
   import { reactive, ref } from "vue";
   import { QForm } from "quasar";
   import { authStore } from "@/modules/auth/store/auth";
+  import { ILoginRequest } from "../types/auth";
   import BaseInputText from "@/shared/inputs/BaseInputText.vue";
   import BaseInputPassword from "@/shared/inputs/BaseInputPassword.vue";
 
   const form = ref<QForm | null>(null);
   const isBtnLoading = ref<boolean>(false);
   const auth = authStore();
-  const formData = reactive({
+  const formData = reactive<ILoginRequest>({
     email: "",
     password: "",
   });

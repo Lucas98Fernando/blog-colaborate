@@ -22,7 +22,7 @@
 
   const setIcon = computed(() => {
     if (data.type === "red") return "error";
-    if (data.type === "success") return "check_circle";
+    if (data.type === "green") return "check_circle";
     else return "";
   });
 </script>
