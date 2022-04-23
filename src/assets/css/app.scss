@@ -2,4 +2,6 @@
 @import "../fonts/poppins.scss";
 @import "./modules/global";
 @import "./mixins/responsive";
+@import "./mixins/default-grid";
 @import "./modules/auth";
+@import "./modules/error";

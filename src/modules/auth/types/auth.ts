@@ -17,3 +17,8 @@ export type IRegisterRequest = {
   email: string;
   password: string;
 };
+
+export enum UserType {
+  admin = 1,
+  author = 2,
+}

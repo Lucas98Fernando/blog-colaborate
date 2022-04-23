@@ -13,7 +13,7 @@ class AuthServices {
     );
     if (status === 200) {
       storage.setLocalAccessToken(data.token);
-      router.push("/");
+      router.push("/home");
     }
     return data;
   }

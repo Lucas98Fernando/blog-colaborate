@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { reactive, ref, watchEffect } from "vue";
+  import { reactive, ref } from "vue";
   import { QForm } from "quasar";
   import { authStore } from "@/modules/auth/store/auth";
   import BaseInputText from "@/shared/inputs/BaseInputText.vue";
@@ -18,7 +18,6 @@
     password: "",
   });
   const passwordConfirm = ref<string>("");
-  const isPasswordMatch = ref<boolean>(false);
 
   function validate() {
     return form.value?.validate().then((success) => {
@@ -36,13 +35,9 @@
     }
   }
 
-  watchEffect(() => {
-    isPasswordMatch.value = formData.password === passwordConfirm.value;
-  });
-
-  const passwordMatch = ref([
-    () => isPasswordMatch.value || "As senhas não coicidem",
-  ]);
+  const passwordMatch = [
+    (val: string) => val === formData.password || "As senhas não coicidem",
+  ];
 </script>
 
 <template>
@@ -64,15 +59,7 @@
       validation-type="email"
     />
 
-    <base-input-password
-      v-model="formData.password"
-      label="Senha"
-      :rules="[
-        ...simpleValidation,
-        ...passwordStrengthValidation,
-        ...passwordMatch,
-      ]"
-    />
+    <base-input-password v-model="formData.password" label="Senha" />
 
     <base-input-password
       v-model="passwordConfirm"

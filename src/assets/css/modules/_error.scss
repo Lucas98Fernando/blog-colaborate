@@ -1,0 +1,17 @@
+.error-container {
+  @include defaultGrid();
+  @include responsive(sm) {
+    grid-template-columns: 1fr;
+  }
+  .content-left,
+  .content-right {
+    margin: 0 auto;
+    @include responsive(sm) {
+      text-align: center;
+    }
+  }
+  img {
+    width: 100%;
+    max-width: 600px;
+  }
+}
