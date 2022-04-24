@@ -19,7 +19,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
   },
   {
     path: "forgot-password",
-    name: "Forgot password",
+    name: "ForgotPassword",
     meta: {
       title: "Recuperação de conta",
     },

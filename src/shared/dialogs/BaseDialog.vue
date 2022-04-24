@@ -28,17 +28,13 @@
   });
 
   const setColor = computed(() => {
-    return {
-      error: "red",
-      success: "green",
-    }[String(data.type)];
+    return { error: "red", success: "green" }[String(data.type)];
   });
 
   const setButtonText = computed(() => {
-    return {
-      error: "Tente novamente",
-      success: "Continuar",
-    }[String(data.type)];
+    return { error: "Tente novamente", success: "Continuar" }[
+      String(data.type)
+    ];
   });
 </script>
 
