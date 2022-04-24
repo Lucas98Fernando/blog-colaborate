@@ -21,23 +21,24 @@
   eventBus.addEventListener("hide-base-dialog", () => (dialog.value = false));
 
   const setImage = computed(() => {
-    if (data.type === "error")
-      return "/images/illustrations/boy-writing-to-notebook.png";
-    if (data.type === "success")
-      return "/images/illustrations/woman-works-on-laptop.png";
-    else return "";
+    return {
+      error: "/images/illustrations/boy-writing-to-notebook.png",
+      success: "/images/illustrations/woman-works-on-laptop.png",
+    }[String(data.type)];
   });
 
   const setColor = computed(() => {
-    if (data.type === "error") return "red";
-    if (data.type === "success") return "green";
-    else return "";
+    return {
+      error: "red",
+      success: "green",
+    }[String(data.type)];
   });
 
   const setButtonText = computed(() => {
-    if (data.type === "error") return "Tente novamente";
-    if (data.type === "success") return "Continuar";
-    else return "";
+    return {
+      error: "Tente novamente",
+      success: "Continuar",
+    }[String(data.type)];
   });
 </script>
 
