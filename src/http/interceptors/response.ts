@@ -10,11 +10,16 @@ export function errorResponse(error: AxiosError) {
     case 400:
       eventBus.emit("show-base-dialog", {
         title: "Atenção",
-        type: "red",
+        type: "error",
         message: error.response.data.error,
       });
       break;
     case 401:
+      eventBus.emit("show-base-dialog", {
+        title: "Credenciais inválidas",
+        type: "error",
+        message: error.response.data.error,
+      });
       router.push(loginPage);
       break;
     case 403:

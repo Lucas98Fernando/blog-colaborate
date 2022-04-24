@@ -31,10 +31,10 @@ class AuthServices {
     if (status === 201) {
       eventBus.emit("show-base-dialog", {
         title: "Ação realizada",
-        type: "green",
+        type: "success",
         message: data.message,
       });
-      setTimeout(() => router.push("/auth/login"), 3000);
+      setTimeout(() => router.push("/auth/login"), 4000);
     }
     return data;
   }
@@ -47,7 +47,7 @@ class AuthServices {
     if (status === 200) {
       eventBus.emit("show-base-dialog", {
         title: "Ação realizada",
-        type: "green",
+        type: "success",
         message: "E-mail enviado com sucesso!",
       });
       setTimeout(() => router.push("/auth/login"), 3000);

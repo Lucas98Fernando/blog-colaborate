@@ -20,25 +20,37 @@
   });
   eventBus.addEventListener("hide-base-dialog", () => (dialog.value = false));
 
-  const setIcon = computed(() => {
-    if (data.type === "red") return "error";
-    if (data.type === "green") return "check_circle";
+  const setImage = computed(() => {
+    if (data.type === "error")
+      return "/images/illustrations/boy-writing-to-notebook.png";
+    if (data.type === "success")
+      return "/images/illustrations/woman-works-on-laptop.png";
+    else return "";
+  });
+
+  const setColor = computed(() => {
+    if (data.type === "error") return "red";
+    if (data.type === "success") return "green";
+    else return "";
+  });
+
+  const setButtonText = computed(() => {
+    if (data.type === "error") return "Tente novamente";
+    if (data.type === "success") return "Continuar";
     else return "";
   });
 </script>
 
 <template>
   <q-dialog v-model="dialog">
-    <q-card>
-      <q-card-section class="row items-center q-pb-none">
-        <div class="text-h6">{{ data.title }}</div>
-        <q-space />
-        <q-btn v-close-popup icon="close" flat round dense />
-      </q-card-section>
-
-      <q-card-section class="row items-center">
-        <q-icon :name="setIcon" :color="data.type" size="2.5em" />
-        <span class="q-ml-sm">{{ data.message }}</span>
+    <q-card class="card-base-dialog">
+      <q-card-section class="text-center">
+        <img :src="setImage" alt="Ilustração de feedback" width="200" />
+        <div :class="`text-${setColor}`" class="text-h6 text-weight-bold">
+          {{ data.title }}
+        </div>
+        <p class="text-blue-grey-9">{{ data.message }}</p>
+        <q-btn v-close-popup :color="setColor" rounded :label="setButtonText" />
       </q-card-section>
     </q-card>
   </q-dialog>
