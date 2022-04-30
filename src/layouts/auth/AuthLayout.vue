@@ -10,6 +10,7 @@
       Login: `${basePath}/man-works-bg-blue.png`,
       Register: `${basePath}/girl-with-cup-bg-blue.png`,
       ForgotPassword: `${basePath}/boy-writing-to-notebook-bg-blue.png`,
+      RecoverAccount: `${basePath}/boy-writing-to-notebook-bg-blue.png`,
     }[String(route.name)];
   });
 </script>

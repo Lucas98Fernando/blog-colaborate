@@ -2,21 +2,26 @@
   import { reactive, ref } from "vue";
   import { QForm } from "quasar";
   import { authStore } from "@/modules/auth/store/auth";
+  import { RegisterRequest } from "../types/auth";
   import BaseInputText from "@/shared/inputs/BaseInputText.vue";
   import BaseInputPassword from "@/shared/inputs/BaseInputPassword.vue";
   import {
     simpleValidation,
     passwordStrengthValidation,
   } from "@/shared/inputs/validations/InputValidations";
+  import NavigateBetweenPages from "./partials/NavigateBetweenPages.vue";
 
   const form = ref<QForm | null>(null);
   const isBtnLoading = ref<boolean>(false);
+
   const auth = authStore();
-  const formData = reactive({
+
+  const formData = reactive<RegisterRequest>({
     name: "",
     email: "",
     password: "",
   });
+
   const passwordConfirm = ref<string>("");
 
   function validate() {
@@ -87,11 +92,10 @@
       </q-btn>
     </div>
 
-    <div class="q-mt-lg q-ml-md">
-      <span>
-        Já possui conta ?
-        <router-link to="/auth/login">Entrar</router-link>
-      </span>
-    </div>
+    <navigate-between-pages
+      text="Já possui conta?"
+      to="/auth/login"
+      label-link="Entrar"
+    />
   </q-form>
 </template>

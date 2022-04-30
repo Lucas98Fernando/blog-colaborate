@@ -21,9 +21,17 @@ const AuthRoutes: Array<RouteRecordRaw> = [
     path: "forgot-password",
     name: "ForgotPassword",
     meta: {
-      title: "Recuperação de conta",
+      title: "Enviar e-mail de recuperação de conta",
     },
     component: () => import("../pages/ForgotPassword.vue"),
+  },
+  {
+    path: "recover-account/:token",
+    name: "RecoverAccount",
+    meta: {
+      title: "Recuperação de conta",
+    },
+    component: () => import("../pages/RecoverAccount.vue"),
   },
 ];
 
