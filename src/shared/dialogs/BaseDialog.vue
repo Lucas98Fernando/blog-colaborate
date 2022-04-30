@@ -22,7 +22,7 @@
 
   const setImage = computed(() => {
     return {
-      error: "/images/illustrations/boy-writing-to-notebook.png",
+      error: "/images/illustrations/boy-working-on-computer.png",
       success: "/images/illustrations/woman-works-on-laptop.png",
     }[String(data.type)];
   });

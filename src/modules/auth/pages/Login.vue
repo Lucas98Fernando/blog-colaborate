@@ -2,14 +2,17 @@
   import { reactive, ref } from "vue";
   import { QForm } from "quasar";
   import { authStore } from "@/modules/auth/store/auth";
-  import { ILoginRequest } from "../types/auth";
+  import { LoginRequest } from "../types/auth";
   import BaseInputText from "@/shared/inputs/BaseInputText.vue";
   import BaseInputPassword from "@/shared/inputs/BaseInputPassword.vue";
+  import NavigateBetweenPages from "./partials/NavigateBetweenPages.vue";
 
   const form = ref<QForm | null>(null);
   const isBtnLoading = ref<boolean>(false);
+
   const auth = authStore();
-  const formData = reactive<ILoginRequest>({
+
+  const formData = reactive<LoginRequest>({
     email: "",
     password: "",
   });
@@ -66,11 +69,10 @@
       </q-btn>
     </div>
 
-    <div class="q-mt-lg q-ml-md">
-      <span>
-        Ainda não possui conta ?
-        <router-link to="/auth/register">Cadastrar-se</router-link>
-      </span>
-    </div>
+    <navigate-between-pages
+      text=" Ainda não possui conta ?"
+      to="/auth/register"
+      label-link="Cadastrar-se"
+    />
   </q-form>
 </template>

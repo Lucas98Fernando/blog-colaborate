@@ -1,3 +1,4 @@
+import ValidateQueryToken from "@/middlewares/validateQueryToken";
 import { RouteRecordRaw } from "vue-router";
 
 const AuthRoutes: Array<RouteRecordRaw> = [
@@ -21,9 +22,20 @@ const AuthRoutes: Array<RouteRecordRaw> = [
     path: "forgot-password",
     name: "ForgotPassword",
     meta: {
-      title: "Recuperação de conta",
+      title: "Enviar e-mail de recuperação de conta",
     },
     component: () => import("../pages/ForgotPassword.vue"),
+  },
+  {
+    path: "recover-account",
+    name: "RecoverAccount",
+    beforeEnter(to, from, next) {
+      ValidateQueryToken(to, from, next);
+    },
+    meta: {
+      title: "Recuperação de conta",
+    },
+    component: () => import("../pages/RecoverAccount.vue"),
   },
 ];
 

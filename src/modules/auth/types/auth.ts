@@ -1,9 +1,14 @@
-export type ILoginRequest = {
+export enum UserType {
+  admin = 1,
+  author = 2,
+}
+
+export type LoginRequest = {
   email: string;
   password: string;
 };
 
-export type ILoginResponse = {
+export type LoginResponse = {
   user: {
     id_user_type: number;
     name: string;
@@ -12,17 +17,22 @@ export type ILoginResponse = {
   token: string;
 };
 
-export type IRegisterRequest = {
+export type RegisterRequest = {
   name: string;
   email: string;
   password: string;
 };
 
-export enum UserType {
-  admin = 1,
-  author = 2,
-}
+export type ForgotPasswordRequest = {
+  email: string;
+};
 
-export type IForgotPasswordRequest = {
+export type RecoverAccountRequest = {
+  token: string;
+  email: string;
+  password: string;
+};
+
+export type RecoverAccountTokenResponse = {
   email: string;
 };

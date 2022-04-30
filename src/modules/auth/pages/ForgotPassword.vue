@@ -3,12 +3,15 @@
   import { QForm } from "quasar";
   import { authStore } from "@/modules/auth/store/auth";
   import BaseInputText from "@/shared/inputs/BaseInputText.vue";
-  import { IForgotPasswordRequest } from "../types/auth";
+  import { ForgotPasswordRequest } from "../types/auth";
+  import NavigateBetweenPages from "./partials/NavigateBetweenPages.vue";
 
   const form = ref<QForm | null>(null);
   const isBtnLoading = ref<boolean>(false);
+
   const auth = authStore();
-  const formData = reactive<IForgotPasswordRequest>({
+
+  const formData = reactive<ForgotPasswordRequest>({
     email: "",
   });
 
@@ -58,11 +61,10 @@
       </q-btn>
     </div>
 
-    <div class="q-mt-lg q-ml-md">
-      <span>
-        Já recuperou a conta ?
-        <router-link to="/auth/login">Fazer login</router-link>
-      </span>
-    </div>
+    <navigate-between-pages
+      text="Já recuperou a conta ?"
+      to="/auth/login"
+      label-link="Fazer login"
+    />
   </q-form>
 </template>

@@ -1,27 +1,34 @@
 import { defineStore } from "pinia";
 import authServices from "../services/auth";
 import {
-  IForgotPasswordRequest,
-  ILoginRequest,
-  ILoginResponse,
-  IRegisterRequest,
+  ForgotPasswordRequest,
+  LoginRequest,
+  LoginResponse,
+  RecoverAccountRequest,
+  RegisterRequest,
 } from "../types/auth";
 
 export const authStore = defineStore("auth", {
   state: () => ({
-    user: <ILoginResponse>{},
+    user: <LoginResponse>{},
   }),
   actions: {
-    async ActionLogin(payload: ILoginRequest) {
+    async ActionLogin(payload: LoginRequest) {
       return await authServices
         .login(payload)
         .then((response) => (this.user = response));
     },
-    ActionRegister(payload: IRegisterRequest) {
+    ActionRegister(payload: RegisterRequest) {
       return authServices.register(payload);
     },
-    ActionForgotPassword(payload: IForgotPasswordRequest) {
+    ActionForgotPassword(payload: ForgotPasswordRequest) {
       return authServices.forgotPassword(payload);
+    },
+    ActionRecoverAccount(payload: RecoverAccountRequest) {
+      return authServices.recoverAccount(payload);
+    },
+    ActionRecoverAccountValidateToken(token: string) {
+      return authServices.recoverAccountValidateToken(token);
     },
   },
 });
