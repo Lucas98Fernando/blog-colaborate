@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { onMounted, reactive, ref } from "vue";
+  import { reactive, ref } from "vue";
   import { QForm } from "quasar";
   import { authStore } from "@/modules/auth/store/auth";
   import { RecoverAccountRequest } from "../types/auth";
@@ -8,7 +8,6 @@
     simpleValidation,
     passwordStrengthValidation,
   } from "@/shared/inputs/validations/InputValidations";
-  import BaseInputText from "@/shared/inputs/BaseInputText.vue";
   import BaseInputPassword from "@/shared/inputs/BaseInputPassword.vue";
   import NavigateBetweenPages from "./partials/NavigateBetweenPages.vue";
 
@@ -19,7 +18,7 @@
   const auth = authStore();
   const route = useRoute();
 
-  const tokenParams = String(route.params.token);
+  const tokenParams = String(route.query.token);
 
   const formData = reactive<RecoverAccountRequest>({
     token: tokenParams,
@@ -39,7 +38,7 @@
   async function handlerRecoverAccount() {
     try {
       isBtnLoading.value = true;
-      await auth.ActionRecoverAccount(formData, tokenParams);
+      await auth.ActionRecoverAccount(formData);
     } finally {
       isBtnLoading.value = false;
     }
@@ -49,12 +48,11 @@
     (val: string) => val === formData.password || "As senhas não coincidem",
   ];
 
-  async function validateCredentials() {
-    await auth.ActionRecoverAccountValidateToken(tokenParams);
+  (async function validateCredentials() {
+    const { email } = await auth.ActionRecoverAccountValidateToken(tokenParams);
+    formData.email = email;
     showLoading.value = false;
-  }
-
-  onMounted(() => validateCredentials());
+  })();
 </script>
 
 <template>
@@ -70,19 +68,11 @@
     </h5>
     <div class="q-mb-lg">Informe e confirme sua nova senha</div>
     <q-form ref="form" class="q-gutter-sm" @submit.prevent="validate">
-      <base-input-text
-        v-model="formData.email"
-        label="E-mail"
-        placeholder="Ex: lucas@gmail.com"
-        prepend-icon="mail_outline"
-        validation-type="email"
-      />
-
-      <base-input-password v-model="formData.password" label="Senha" />
+      <base-input-password v-model="formData.password" label="Nova senha" />
 
       <base-input-password
         v-model="passwordConfirm"
-        label="Confirmar senha"
+        label="Confirmar nova senha"
         :rules="[
           ...simpleValidation,
           ...passwordStrengthValidation,

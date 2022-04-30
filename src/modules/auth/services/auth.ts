@@ -56,12 +56,9 @@ class AuthServices {
     }
   }
 
-  async recoverAccount(
-    payload: RecoverAccountRequest,
-    token: string
-  ): Promise<void> {
+  async recoverAccount(payload: RecoverAccountRequest): Promise<void> {
     const { status }: AxiosResponse = await api.put(
-      `/auth/recover-account/${token}`,
+      "/auth/recover-account",
       payload
     );
     if (status === 200) {
@@ -77,10 +74,9 @@ class AuthServices {
   async recoverAccountValidateToken(
     token: string
   ): Promise<RecoverAccountTokenResponse> {
-    const { data, status }: AxiosResponse<RecoverAccountTokenResponse> =
-      await api(`/auth/recover-account/validate-token/${token}`);
-    if (status !== 200) router.push("/auth/login");
-
+    const { data }: AxiosResponse<RecoverAccountTokenResponse> = await api(
+      `/auth/recover-account/validate-token/${token}`
+    );
     return data;
   }
 }

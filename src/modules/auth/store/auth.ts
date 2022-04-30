@@ -24,8 +24,8 @@ export const authStore = defineStore("auth", {
     ActionForgotPassword(payload: ForgotPasswordRequest) {
       return authServices.forgotPassword(payload);
     },
-    ActionRecoverAccount(payload: RecoverAccountRequest, token: string) {
-      return authServices.recoverAccount(payload, token);
+    ActionRecoverAccount(payload: RecoverAccountRequest) {
+      return authServices.recoverAccount(payload);
     },
     ActionRecoverAccountValidateToken(token: string) {
       return authServices.recoverAccountValidateToken(token);

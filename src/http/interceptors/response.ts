@@ -1,8 +1,7 @@
-import { useRouter } from "vue-router";
+import router from "@/router";
 import eventBus from "@/helpers/eventBus";
 import { AxiosError } from "axios";
 
-const router = useRouter();
 const loginPage = "/auth/login";
 
 export function errorResponse(error: AxiosError) {
@@ -20,10 +19,15 @@ export function errorResponse(error: AxiosError) {
         type: "error",
         message: error.response.data.error,
       });
-      router.push(loginPage);
+      setTimeout(() => router.push(loginPage), 3000);
       break;
     case 403:
-      router.push(loginPage);
+      eventBus.emit("show-base-dialog", {
+        title: "Você não possui autorização",
+        type: "error",
+        message: error.response.data.error,
+      });
+      setTimeout(() => router.push(loginPage), 3000);
       break;
     case 404:
       break;
