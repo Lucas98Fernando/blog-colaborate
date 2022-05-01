@@ -18,7 +18,7 @@
   const auth = authStore();
   const route = useRoute();
 
-  const tokenParams = String(route.query.token);
+  const tokenParams = String(route.params.token);
 
   const formData = reactive<RecoverAccountRequest>({
     token: tokenParams,
