@@ -79,6 +79,11 @@ class AuthServices {
     );
     return data;
   }
+
+  logout(): void {
+    storage.removeLocalAccessToken();
+    router.push("/auth/login");
+  }
 }
 
 export default new AuthServices();

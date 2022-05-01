@@ -30,5 +30,8 @@ export const authStore = defineStore("auth", {
     ActionRecoverAccountValidateToken(token: string) {
       return authServices.recoverAccountValidateToken(token);
     },
+    ActionLogout() {
+      return authServices.logout();
+    },
   },
 });
