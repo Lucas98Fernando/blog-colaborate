@@ -26,7 +26,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
     component: () => import("../pages/ForgotPassword.vue"),
   },
   {
-    path: "recover-account/:token",
+    path: "recover-account/:token*",
     name: "RecoverAccount",
     // beforeEnter(to, from, next) {
     //   ValidateQueryToken(to, from, next);
