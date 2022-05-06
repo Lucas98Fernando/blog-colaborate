@@ -5,7 +5,7 @@ export default async function AuthMiddleware(
   router: Router,
   to: RouteLocation,
   next: NavigationGuardNext
-): Promise<void> {
+) {
   const token: string = storage.getLocalAccessToken() || "";
 
   const guestRoutes: string[] = [
@@ -16,7 +16,9 @@ export default async function AuthMiddleware(
   ];
 
   if (!token && !guestRoutes.includes(String(to.name)))
-    router.replace({ name: guestRoutes[0] });
+    return to.name === "Start"
+      ? next()
+      : router.replace({ name: guestRoutes[0] });
   if (token && guestRoutes.includes(String(to.name))) router.replace("/home");
   else next();
 }

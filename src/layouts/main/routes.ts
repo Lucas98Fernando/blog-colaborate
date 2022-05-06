@@ -4,7 +4,7 @@ import HomeRoutes from "@/modules/home/routes";
 const MainLayoutRoutes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    redirect: "/home",
+    redirect: "/start",
     component: () => import("./MainLayout.vue"),
     children: [...HomeRoutes],
   },

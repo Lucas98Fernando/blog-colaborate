@@ -1,13 +1,15 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import { default as mainLayoutRoutes } from "@/layouts/main/routes";
-import { default as authLayoutRoutes } from "@/layouts/auth/routes";
-import { default as errorLayoutRoutes } from "@/layouts/error/routes";
+import mainLayoutRoutes from "@/layouts/main/routes";
+import authLayoutRoutes from "@/layouts/auth/routes";
+import errorLayoutRoutes from "@/layouts/error/routes";
 import AuthMiddleware from "@/middlewares/auth";
+import startRoutes from "@/modules/start/routes";
 
 const routes: Array<RouteRecordRaw> = [
   ...mainLayoutRoutes,
   ...authLayoutRoutes,
   ...errorLayoutRoutes,
+  ...startRoutes,
 ];
 
 const router = createRouter({
