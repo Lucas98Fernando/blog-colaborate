@@ -5,7 +5,7 @@
   import { LoginRequest } from "../types/auth";
   import BaseInputText from "@/shared/inputs/BaseInputText.vue";
   import BaseInputPassword from "@/shared/inputs/BaseInputPassword.vue";
-  import NavigateBetweenPages from "./partials/NavigateBetweenPages.vue";
+  import NavigateBetweenPages from "../partials/NavigateBetweenPages.vue";
 
   const form = ref<QForm | null>(null);
   const isBtnLoading = ref<boolean>(false);

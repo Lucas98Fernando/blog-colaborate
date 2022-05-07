@@ -5,9 +5,17 @@ const HomeRoutes: Array<RouteRecordRaw> = [
     path: "home",
     name: "Home",
     meta: {
-      title: "Home",
+      title: "Início",
     },
     component: () => import("../pages/Home.vue"),
+  },
+  {
+    path: "about",
+    name: "About",
+    meta: {
+      title: "Sobre",
+    },
+    component: () => import("../pages/AboutPage.vue"),
   },
 ];
 

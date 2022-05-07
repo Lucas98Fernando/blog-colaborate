@@ -1,12 +1,14 @@
 <script lang="ts" setup>
-  const name = "Main";
+  import NavigationDrawer from "./ui/NavigationDrawer.vue";
+  import AppBar from "./ui/AppBar.vue";
 </script>
 
 <template>
-  <q-layout>
-    <h1>{{ name }}</h1>
+  <q-layout view="lHh Lpr lff">
+    <navigation-drawer />
+    <app-bar />
     <!-- this is where the Pages are injected -->
-    <q-page-container>
+    <q-page-container class="q-mx-lg">
       <router-view :key="$route.fullPath" />
     </q-page-container>
   </q-layout>

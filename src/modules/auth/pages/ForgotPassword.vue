@@ -4,7 +4,7 @@
   import { authStore } from "@/modules/auth/store/auth";
   import BaseInputText from "@/shared/inputs/BaseInputText.vue";
   import { ForgotPasswordRequest } from "../types/auth";
-  import NavigateBetweenPages from "./partials/NavigateBetweenPages.vue";
+  import NavigateBetweenPages from "../partials/NavigateBetweenPages.vue";
 
   const form = ref<QForm | null>(null);
   const isBtnLoading = ref<boolean>(false);
