@@ -5,6 +5,6 @@
 <template>
   <q-layout>
     <base-dialog />
-    <router-view :key="$route.fullPath" />
+    <router-view />
   </q-layout>
 </template>

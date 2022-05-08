@@ -6,6 +6,10 @@ const HomeRoutes: Array<RouteRecordRaw> = [
     name: "Home",
     meta: {
       title: "Início",
+      transition: {
+        enterClass: "animate__fadeInLeft animate__slow",
+        leavesClass: "animate__fadeInRight animate__slow",
+      },
     },
     component: () => import("../pages/Home.vue"),
   },
@@ -14,6 +18,10 @@ const HomeRoutes: Array<RouteRecordRaw> = [
     name: "About",
     meta: {
       title: "Sobre",
+      transition: {
+        enterClass: "animate__fadeInLeft animate__slow",
+        leavesClass: "animate__fadeInRight animate__slow",
+      },
     },
     component: () => import("../pages/AboutPage.vue"),
   },
