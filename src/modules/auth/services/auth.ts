@@ -11,6 +11,7 @@ import {
 import router from "@/router";
 import storage from "@/helpers/storage";
 import eventBus from "@/helpers/eventBus";
+import { menuAdmin, menuAuthor } from "../partials/menuOptions";
 
 class AuthServices {
   async login(payload: LoginRequest): Promise<LoginResponse> {
@@ -20,6 +21,10 @@ class AuthServices {
     );
     if (status === 200) {
       storage.setLocalAccessToken(data.token);
+      // Setting the menu for the authenticated user
+      if (data.user.id_user_type === 1)
+        localStorage.setItem("menu", JSON.stringify(menuAdmin));
+      else localStorage.setItem("menu", JSON.stringify(menuAuthor));
       router.push("/home");
     }
     return data;
@@ -81,7 +86,7 @@ class AuthServices {
   }
 
   logout(): void {
-    storage.removeLocalAccessToken();
+    storage.removeAllLocalStorage();
     router.push("/auth/login");
   }
 }

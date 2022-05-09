@@ -1,5 +1,6 @@
 class Storage {
   private token = "access_token";
+  private menu = "menu";
 
   getLocalAccessToken(): string | null {
     return localStorage.getItem(this.token);
@@ -7,8 +8,9 @@ class Storage {
   setLocalAccessToken(payload: string): void {
     localStorage.setItem(this.token, JSON.stringify(payload));
   }
-  removeLocalAccessToken(): void {
+  removeAllLocalStorage(): void {
     localStorage.removeItem(this.token);
+    localStorage.removeItem(this.menu);
   }
 }
 

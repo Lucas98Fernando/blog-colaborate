@@ -14,16 +14,16 @@ const HomeRoutes: Array<RouteRecordRaw> = [
     component: () => import("../pages/Home.vue"),
   },
   {
-    path: "about",
-    name: "About",
+    path: "posts",
+    name: "Posts",
     meta: {
-      title: "Sobre",
+      title: "Postagens",
       transition: {
         enterClass: "animate__fadeInLeft animate__slow",
         leavesClass: "animate__fadeInRight animate__slow",
       },
     },
-    component: () => import("../pages/AboutPage.vue"),
+    component: () => import("../pages/PostsPage.vue"),
   },
 ];
 

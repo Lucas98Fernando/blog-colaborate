@@ -4,6 +4,7 @@ import authLayoutRoutes from "@/layouts/auth/routes";
 import errorLayoutRoutes from "@/layouts/error/routes";
 import AuthMiddleware from "@/middlewares/auth";
 import startRoutes from "@/modules/start/routes";
+import { routeState } from "@/layouts/main/ui/routeState";
 
 const routes: Array<RouteRecordRaw> = [
   ...mainLayoutRoutes,
@@ -19,6 +20,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   document.title = `Blog Colaborate - ${to.meta.title}`;
+  routeState.value = String(to.meta?.title);
   AuthMiddleware(router, to, next);
 });
 

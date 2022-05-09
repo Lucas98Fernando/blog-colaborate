@@ -1,8 +1,10 @@
 <script lang="ts" setup>
   import { ref } from "vue";
+  import { UserMenu } from "@/modules/auth/types/auth";
 
   const drawer = ref<boolean>(false);
   const miniState = ref<boolean>(true);
+  const menu: UserMenu[] = JSON.parse(localStorage.getItem("menu") || "[]");
 </script>
 
 <template>
@@ -19,38 +21,17 @@
   >
     <q-scroll-area class="fit">
       <q-list>
-        <q-item clickable to="/home">
+        <q-item
+          v-for="(item, index) in menu"
+          :key="index"
+          clickable
+          :to="item.to"
+        >
           <q-item-section avatar>
-            <q-icon name="home" />
+            <q-icon :name="item.icon" />
           </q-item-section>
 
-          <q-item-section> Início </q-item-section>
-        </q-item>
-
-        <q-item clickable to="/about">
-          <q-item-section avatar>
-            <q-icon name="star" />
-          </q-item-section>
-
-          <q-item-section> Star </q-item-section>
-        </q-item>
-
-        <q-item clickable>
-          <q-item-section avatar>
-            <q-icon name="send" />
-          </q-item-section>
-
-          <q-item-section> Send </q-item-section>
-        </q-item>
-
-        <q-separator />
-
-        <q-item clickable>
-          <q-item-section avatar>
-            <q-icon name="drafts" />
-          </q-item-section>
-
-          <q-item-section> Drafts </q-item-section>
+          <q-item-section> {{ item.name }} </q-item-section>
         </q-item>
       </q-list>
     </q-scroll-area>

@@ -36,3 +36,9 @@ export type RecoverAccountRequest = {
 export type RecoverAccountTokenResponse = {
   email: string;
 };
+
+export type UserMenu = {
+  name: string;
+  icon: string;
+  to: string;
+};
