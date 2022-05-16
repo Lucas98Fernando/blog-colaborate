@@ -40,7 +40,7 @@
 
 <template>
   <q-dialog v-model="dialog">
-    <q-card class="card-base-dialog">
+    <q-card class="card-base-dialog card-rounded">
       <q-card-section class="text-center">
         <img :src="setImage" alt="Ilustração de feedback" width="200" />
         <div :class="`text-${setColor}`" class="text-h6 text-weight-bold">

@@ -1,3 +1,6 @@
+html {
+  background-color: var(--white-dark);
+}
 body {
   font-family: $poppins;
 }
@@ -7,5 +10,7 @@ a {
 }
 .card-base-dialog {
   width: 350px;
+}
+.card-rounded {
   border-radius: 20px !important;
 }

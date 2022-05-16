@@ -15,7 +15,7 @@
     :width="250"
     :breakpoint="500"
     bordered
-    class="bg-grey-3"
+    class="bg-primary text-white"
     @mouseover="miniState = false"
     @mouseout="miniState = true"
   >
@@ -24,8 +24,9 @@
         <q-item
           v-for="(item, index) in menu"
           :key="index"
-          clickable
           :to="item.to"
+          clickable
+          active-class="bg-white text-primary"
         >
           <q-item-section avatar>
             <q-icon :name="item.icon" />
