@@ -1,18 +1,18 @@
 import { RouteRecordRaw } from "vue-router";
 
-const HomeRoutes: Array<RouteRecordRaw> = [
+const PostRoutes: Array<RouteRecordRaw> = [
   {
-    path: "home",
-    name: "Home",
+    path: "posts",
+    name: "Posts",
     meta: {
-      title: "Início",
+      title: "Postagens",
       transition: {
         enterClass: "animate__fadeInLeft animate__slow",
         leavesClass: "animate__fadeInRight animate__slow",
       },
     },
-    component: () => import("../pages/Home.vue"),
+    component: () => import("../pages/PostsPage.vue"),
   },
 ];
 
-export default HomeRoutes;
+export default PostRoutes;

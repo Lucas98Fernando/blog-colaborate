@@ -20,7 +20,7 @@ class AuthServices {
       payload
     );
     if (status === 200) {
-      storage.setLocalAccessToken(data.token);
+      storage.setUserLocalStorage(data);
       // Setting the menu for the authenticated user
       if (data.user.id_user_type === 1)
         localStorage.setItem("menu", JSON.stringify(menuAdmin));

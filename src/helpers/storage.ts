@@ -1,16 +1,25 @@
+import { LoginResponse } from "@/modules/auth/types/auth";
+
 class Storage {
-  private token = "access_token";
-  private menu = "menu";
+  localUserData(): LoginResponse {
+    return JSON.parse(String(localStorage.getItem("userInfo"))) || "";
+  }
 
   getLocalAccessToken(): string | null {
-    return localStorage.getItem(this.token);
+    return this.localUserData().token;
   }
-  setLocalAccessToken(payload: string): void {
-    localStorage.setItem(this.token, JSON.stringify(payload));
+
+  getLocalName(): string | null {
+    return this.localUserData().user.name;
   }
+
+  setUserLocalStorage(payload: LoginResponse): void {
+    localStorage.setItem("userInfo", JSON.stringify(payload));
+  }
+
   removeAllLocalStorage(): void {
-    localStorage.removeItem(this.token);
-    localStorage.removeItem(this.menu);
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("menu");
   }
 }
 
