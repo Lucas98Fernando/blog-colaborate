@@ -11,7 +11,7 @@ const HomeRoutes: Array<RouteRecordRaw> = [
         leavesClass: "animate__fadeInRight animate__slow",
       },
     },
-    component: () => import("../pages/Home.vue"),
+    component: () => import("../pages/HomePage.vue"),
   },
 ];
 
