@@ -17,9 +17,8 @@ export const usePostStore = defineStore("posts", {
     //   }
     // },
     async ActionGetPostsByUser() {
-      return await postsServices
-        .postsByUser()
-        .then((response) => (this.posts_by_user = response));
+      const response = await postsServices.postsByUser();
+      this.posts_by_user = response;
     },
   },
 });

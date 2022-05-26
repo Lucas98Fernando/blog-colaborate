@@ -1,9 +1,11 @@
-<script lang="ts" setup>
+<script lang="ts">
   import { onMounted, ref } from "vue";
   import { storeToRefs } from "pinia";
   import postsColumns from "./PostsColumns";
+  import CreatePost from "../components/CreatePost.vue";
   import { usePostStore } from "../store/posts";
 
+  const columns = postsColumns;
   const postsStore = usePostStore();
   const { posts_by_user } = storeToRefs(postsStore);
 
@@ -18,16 +20,30 @@
     }
   }
 
-  onMounted(() => fetchPosts());
+  export default {
+    components: { CreatePost },
+    setup() {
+      onMounted(() => fetchPosts());
+
+      return {
+        columns,
+        posts_by_user,
+        filter,
+        loading,
+      };
+    },
+  };
 </script>
 
 <template>
   <q-card class="q-mt-sm card-rounded">
     <q-table
       :rows="posts_by_user"
-      :columns="postsColumns"
+      :columns="columns"
       :filter="filter"
       :loading="loading"
+      no-data-label="Nenhum post encontrado"
+      loading-label="Carregando posts, aguarde..."
       row-key="name"
     >
       <template #top>
@@ -49,10 +65,7 @@
 
         <q-space />
 
-        <q-btn color="primary" rounded>
-          Nova postagem
-          <q-icon size="1.3rem" right name="add" />
-        </q-btn>
+        <create-post />
       </template>
       <!-- <template #body="props">
         <q-tr :props="props">

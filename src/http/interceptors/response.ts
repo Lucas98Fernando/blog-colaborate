@@ -1,6 +1,7 @@
 import router from "@/router";
 import eventBus from "@/helpers/eventBus";
 import { AxiosError } from "axios";
+import storage from "@/helpers/storage";
 
 const loginPage = "/auth/login";
 
@@ -19,6 +20,7 @@ export function errorResponse(error: AxiosError) {
         type: "error",
         message: error.response.data.error,
       });
+      storage.removeAllLocalStorage();
       setTimeout(() => router.push(loginPage), 3000);
       break;
     case 403:

@@ -14,9 +14,8 @@ export const authStore = defineStore("auth", {
   }),
   actions: {
     async ActionLogin(payload: LoginRequest) {
-      return await authServices
-        .login(payload)
-        .then((response) => (this.user = response));
+      const response = await authServices.login(payload);
+      this.user = response;
     },
     ActionRegister(payload: RegisterRequest) {
       return authServices.register(payload);

@@ -1,4 +1,6 @@
-const columns: any = [
+import { QTableColumn } from "quasar";
+
+const columns: QTableColumn[] = [
   {
     name: "id",
     align: "center",
