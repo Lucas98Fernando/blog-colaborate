@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" setup>
   import { onMounted, ref } from "vue";
   import { storeToRefs } from "pinia";
   import postsColumns from "./PostsColumns";
@@ -20,19 +20,7 @@
     }
   }
 
-  export default {
-    components: { CreatePost },
-    setup() {
-      onMounted(() => fetchPosts());
-
-      return {
-        columns,
-        posts_by_user,
-        filter,
-        loading,
-      };
-    },
-  };
+  onMounted(() => fetchPosts());
 </script>
 
 <template>

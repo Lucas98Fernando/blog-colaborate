@@ -1,6 +1,6 @@
-import { QTableColumn } from "quasar";
+import { QTableProps } from "quasar";
 
-const columns: QTableColumn[] = [
+const columns: QTableProps["columns"] = [
   {
     name: "id",
     align: "center",
