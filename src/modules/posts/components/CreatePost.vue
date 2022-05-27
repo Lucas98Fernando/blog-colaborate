@@ -5,7 +5,7 @@
   import BaseInputText from "@/shared/inputs/BaseInputText.vue";
   import { useCategoryStore } from "@/modules/categories/store/categories";
   import { usePostStore } from "@/modules/posts/store/posts";
-  import { PostCreateBody } from "../types/posts";
+  import { PostCreateBody, ResetFields } from "../types/posts";
 
   const categoryStore = useCategoryStore();
   const { categories_all } = storeToRefs(categoryStore);
@@ -52,6 +52,16 @@
     }
   }
 
+  function resetFormFields() {
+    Object.keys(formData).forEach(
+      (key) => (formData[key as keyof ResetFields] = "")
+    );
+  }
+
+  function resetFormValidation() {
+    form.value?.resetValidation();
+  }
+
   async function createPost() {
     try {
       isBtnLoading.value = true;
@@ -62,7 +72,10 @@
       );
       formMultiPart.append("image", imagePost.value || "");
 
-      await postStore.ActionCreatePost(formMultiPart);
+      await postStore.ActionCreatePost(formMultiPart).then(() => {
+        resetFormFields();
+        resetFormValidation();
+      });
     } finally {
       isBtnLoading.value = false;
     }

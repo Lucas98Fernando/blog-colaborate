@@ -9,11 +9,31 @@ const columns: QTableProps["columns"] = [
     sortable: true,
   },
   {
+    name: "category",
+    align: "center",
+    label: "Categoria",
+    field: "category",
+    sortable: true,
+  },
+  {
+    name: "status",
+    align: "center",
+    label: "Status",
+    field: "status",
+    sortable: true,
+  },
+  {
     name: "title",
     align: "center",
     label: "Título",
     field: "title",
     sortable: true,
+  },
+  {
+    name: "image",
+    align: "center",
+    label: "Imagem",
+    field: "image",
   },
   {
     name: "description",

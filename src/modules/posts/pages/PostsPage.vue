@@ -4,6 +4,7 @@
   import postsColumns from "./PostsColumns";
   import CreatePost from "../components/CreatePost.vue";
   import { usePostStore } from "../store/posts";
+  import eventBus from "@/helpers/eventBus";
 
   const columns = postsColumns;
   const postsStore = usePostStore();
@@ -12,12 +13,30 @@
   const filter = ref<string>("");
   const loading = ref<boolean>(true);
 
+  eventBus.addEventListener("fetch-posts", () => fetchPosts());
+
   async function fetchPosts() {
     try {
       await postsStore.ActionGetPostsByUser();
     } finally {
       loading.value = false;
     }
+  }
+
+  function setStatusText(status: number) {
+    return { 1: "Aguardando aprovação", 2: "Aprovado" }[status];
+  }
+
+  function setStatusColor(status: number) {
+    return { 1: "warning", 2: "green" }[status];
+  }
+
+  function setStatusTextColor(status: number) {
+    return { 1: "black", 2: "white" }[status];
+  }
+
+  function openImage(url: string) {
+    window.open(`${import.meta.env.VITE_API_URL}/uploads/${url}`, "_blank");
   }
 
   onMounted(() => fetchPosts());
@@ -31,6 +50,7 @@
       :filter="filter"
       :loading="loading"
       no-data-label="Nenhum post encontrado"
+      :no-results-label="`Nenhuma postagem encontrada com: ${filter}`"
       loading-label="Carregando posts, aguarde..."
       row-key="name"
     >
@@ -40,7 +60,7 @@
           outlined
           rounded
           dense
-          placeholder="Pesquisar algo..."
+          placeholder="Pesquisar postagem..."
         >
           <template #prepend>
             <q-icon name="search" />
@@ -55,48 +75,44 @@
 
         <create-post />
       </template>
-      <!-- <template #body="props">
+
+      <template #body="props">
         <q-tr :props="props">
-          <q-td key="name" :props="props">
-            {{ props.row.name }}
+          <q-td key="id" :props="props">
+            {{ props.row.id }}
           </q-td>
-          <q-td key="calories" :props="props">
-            <q-badge color="green">
-              {{ props.row.calories }}
+          <q-td key="category" :props="props">
+            {{ props.row.category.name }}
+          </q-td>
+          <q-td key="status" :props="props">
+            <q-badge
+              class="q-py-sm q-px-sm"
+              :class="`text-${setStatusTextColor(props.row.status)}`"
+              :color="setStatusColor(props.row.status)"
+              rounded
+            >
+              {{ setStatusText(props.row.status) }}
             </q-badge>
           </q-td>
-          <q-td key="fat" :props="props">
-            <q-badge color="purple">
-              {{ props.row.fat }}
-            </q-badge>
+          <q-td key="title" :props="props">
+            {{ props.row.title }}
           </q-td>
-          <q-td key="carbs" :props="props">
-            <q-badge color="orange">
-              {{ props.row.carbs }}
-            </q-badge>
+          <q-td key="image" :props="props">
+            <q-btn
+              color="primary"
+              label="Ver imagem"
+              size="sm"
+              icon-right="open_in_new"
+              outline
+              rounded
+              @click="openImage(props.row.image)"
+            />
           </q-td>
-          <q-td key="protein" :props="props">
-            <q-badge color="primary">
-              {{ props.row.protein }}
-            </q-badge>
-          </q-td>
-          <q-td key="sodium" :props="props">
-            <q-badge color="teal">
-              {{ props.row.sodium }}
-            </q-badge>
-          </q-td>
-          <q-td key="calcium" :props="props">
-            <q-badge color="accent">
-              {{ props.row.calcium }}
-            </q-badge>
-          </q-td>
-          <q-td key="iron" :props="props">
-            <q-badge color="amber">
-              {{ props.row.iron }}
-            </q-badge>
+          <q-td key="description" :props="props">
+            {{ props.row.description }}
           </q-td>
         </q-tr>
-      </template> -->
+      </template>
     </q-table>
   </q-card>
 </template>

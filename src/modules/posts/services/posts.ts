@@ -22,6 +22,7 @@ class PostsServices {
         type: "success",
         message: data,
       });
+      eventBus.emit("fetch-posts");
     }
   }
 }
