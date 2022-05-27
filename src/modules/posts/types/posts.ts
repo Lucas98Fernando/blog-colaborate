@@ -8,3 +8,11 @@ export type PostResponse = {
   image: string;
   slug: string;
 };
+
+export type PostCreateBody = {
+  title: string;
+  description: string;
+  id_category: string;
+  slug: string;
+  image?: File;
+};

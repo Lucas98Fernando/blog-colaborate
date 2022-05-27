@@ -15,6 +15,13 @@ const columns: QTableProps["columns"] = [
     field: "title",
     sortable: true,
   },
+  {
+    name: "description",
+    align: "center",
+    label: "Descrição",
+    field: "description",
+    sortable: true,
+  },
   // {
   //   name: "name",
   //   required: true,

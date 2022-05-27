@@ -10,6 +10,7 @@ export const useCategoryStore = defineStore("categories", {
     async ActionGetAllCategories() {
       const data = await categoriesServices.allCategories();
       this.categories_all = data;
+      return data;
     },
   },
 });
