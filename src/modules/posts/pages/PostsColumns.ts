@@ -42,6 +42,12 @@ const columns: QTableProps["columns"] = [
     field: "description",
     sortable: true,
   },
+  {
+    name: "actions",
+    align: "center",
+    label: "Ações",
+    field: "actions",
+  },
   // {
   //   name: "name",
   //   required: true,

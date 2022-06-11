@@ -77,7 +77,7 @@
       </template>
 
       <template #body="props">
-        <q-tr :props="props">
+        <q-tr :props="props" class="tr-posts">
           <q-td key="id" :props="props">
             {{ props.row.id }}
           </q-td>
@@ -111,8 +111,30 @@
           <q-td key="description" :props="props">
             {{ props.row.description }}
           </q-td>
+          <q-td key="actions" :props="props">
+            <q-btn
+              class="btn-edit"
+              icon="edit"
+              color="primary"
+              flat
+              round
+              size="sm"
+            >
+              <q-tooltip> Editar </q-tooltip>
+            </q-btn>
+          </q-td>
         </q-tr>
       </template>
     </q-table>
   </q-card>
 </template>
+
+<style lang="scss" scoped>
+  .btn-edit {
+    display: none;
+  }
+
+  .tr-posts:hover .btn-edit {
+    display: inline;
+  }
+</style>
