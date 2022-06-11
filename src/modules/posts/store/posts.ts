@@ -15,5 +15,8 @@ export const usePostStore = defineStore("posts", {
     async ActionCreatePost(body: FormData) {
       return await postsServices.createPost(body);
     },
+    async ActionUpdatePost(body: FormData, idPost: number) {
+      return await postsServices.updatePost(body, idPost);
+    },
   },
 });

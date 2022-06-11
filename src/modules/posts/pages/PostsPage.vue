@@ -3,6 +3,7 @@
   import { storeToRefs } from "pinia";
   import postsColumns from "./PostsColumns";
   import CreatePost from "../components/CreatePost.vue";
+  import EditPost from "../components/EditPost.vue";
   import { usePostStore } from "../store/posts";
   import eventBus from "@/helpers/eventBus";
 
@@ -112,16 +113,7 @@
             {{ props.row.description }}
           </q-td>
           <q-td key="actions" :props="props">
-            <q-btn
-              class="btn-edit"
-              icon="edit"
-              color="primary"
-              flat
-              round
-              size="sm"
-            >
-              <q-tooltip> Editar </q-tooltip>
-            </q-btn>
+            <EditPost :data="props.row" />
           </q-td>
         </q-tr>
       </template>
@@ -129,7 +121,7 @@
   </q-card>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .btn-edit {
     display: none;
   }

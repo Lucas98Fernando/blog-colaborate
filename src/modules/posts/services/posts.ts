@@ -25,6 +25,21 @@ class PostsServices {
       eventBus.emit("fetch-posts");
     }
   }
+
+  async updatePost(body: FormData, idPost: number): Promise<void> {
+    const { data, status }: AxiosResponse = await api.put(
+      `/post/update/${idPost}`,
+      body
+    );
+    if (status === 200) {
+      eventBus.emit("show-base-dialog", {
+        title: "Postagem atualizada",
+        type: "success",
+        message: data.message,
+      });
+      eventBus.emit("fetch-posts");
+    }
+  }
 }
 
 export default new PostsServices();
