@@ -47,7 +47,7 @@
 <template>
   <q-card class="q-mt-sm card-rounded">
     <q-table
-      :rows="posts_by_user"
+      :rows="posts_by_user.posts"
       :columns="columns"
       :filter="filter"
       :loading="loading"
@@ -115,7 +115,7 @@
           </q-td>
           <q-td key="actions" :props="props">
             <EditPost :data="props.row" />
-            <ApprovalPost :data="props.row" />
+            <ApprovalPost v-if="posts_by_user.isAdmin" :data="props.row" />
           </q-td>
         </q-tr>
       </template>

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
   import { ref } from "vue";
-  import { PostResponse } from "../types/posts";
+  import { Post } from "../types/posts";
 
   interface Props {
-    data: PostResponse;
+    data: Post;
   }
 
   const props = defineProps<Props>();
@@ -34,8 +34,14 @@
       </q-card-section>
 
       <q-card-actions align="right">
-        <q-btn v-close-popup flat label="Cancelar" color="grey-14" />
-        <q-btn v-close-popup color="green" rounded> Aprovar </q-btn>
+        <q-btn v-close-popup flat label="Cancelar" color="grey-14" rounded />
+        <q-btn
+          v-close-popup
+          label="Aprovar"
+          color="green"
+          padding="4px 18px"
+          rounded
+        />
       </q-card-actions>
     </q-card>
   </q-dialog>

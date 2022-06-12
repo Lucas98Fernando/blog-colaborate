@@ -1,4 +1,9 @@
 export type PostResponse = {
+  isAdmin: boolean;
+  posts: Post[];
+};
+
+export type Post = {
   id: number;
   id_author: number;
   status: number;

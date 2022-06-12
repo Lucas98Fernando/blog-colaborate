@@ -5,10 +5,10 @@
   import BaseInputText from "@/shared/inputs/BaseInputText.vue";
   import { useCategoryStore } from "@/modules/categories/store/categories";
   import { usePostStore } from "@/modules/posts/store/posts";
-  import { PostCreateBody, PostResponse } from "../types/posts";
+  import { PostCreateBody, Post } from "../types/posts";
 
   interface Props {
-    data: PostResponse;
+    data: Post;
   }
 
   const props = defineProps<Props>();

@@ -4,7 +4,7 @@ import postsServices from "../services/posts";
 
 export const usePostStore = defineStore("posts", {
   state: () => ({
-    posts_by_user: <PostResponse[]>[],
+    posts_by_user: <PostResponse>{},
   }),
   actions: {
     async ActionGetPostsByUser() {

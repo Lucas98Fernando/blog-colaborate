@@ -5,7 +5,7 @@ import eventBus from "@/helpers/eventBus";
 
 class PostsServices {
   async postsByUser() {
-    const { data }: AxiosResponse<PostResponse[]> = await api(
+    const { data }: AxiosResponse<PostResponse> = await api(
       "/post/get-by-user"
     );
     return data;
