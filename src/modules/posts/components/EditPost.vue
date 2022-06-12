@@ -45,19 +45,6 @@
     });
   }
 
-  async function fetchCategories() {
-    try {
-      isSelectLoading.value = true;
-      if (categories_all.value.length > 0) loadOptions();
-      else {
-        await categoryStore.ActionGetAllCategories();
-        loadOptions();
-      }
-    } finally {
-      isSelectLoading.value = false;
-    }
-  }
-
   async function updatePost() {
     try {
       isBtnLoading.value = true;
@@ -83,12 +70,12 @@
     }
   });
 
-  onMounted(() => fetchCategories());
+  onMounted(() => loadOptions());
 </script>
 
 <template>
   <q-btn
-    class="btn-edit"
+    class="btn-action"
     icon="edit"
     color="primary"
     flat

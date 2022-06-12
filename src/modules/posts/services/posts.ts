@@ -40,6 +40,21 @@ class PostsServices {
       eventBus.emit("fetch-posts");
     }
   }
+
+  async approvalPost(body: FormData, idPost: number): Promise<void> {
+    const { data, status }: AxiosResponse = await api.put(
+      `/post/approval/${idPost}`,
+      body
+    );
+    if (status === 200) {
+      eventBus.emit("show-base-dialog", {
+        title: "Postagem aprovada",
+        type: "success",
+        message: data.message,
+      });
+      eventBus.emit("fetch-posts");
+    }
+  }
 }
 
 export default new PostsServices();

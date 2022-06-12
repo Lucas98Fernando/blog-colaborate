@@ -4,6 +4,7 @@
   import postsColumns from "./PostsColumns";
   import CreatePost from "../components/CreatePost.vue";
   import EditPost from "../components/EditPost.vue";
+  import ApprovalPost from "../components/ApprovalPost.vue";
   import { usePostStore } from "../store/posts";
   import eventBus from "@/helpers/eventBus";
 
@@ -114,6 +115,7 @@
           </q-td>
           <q-td key="actions" :props="props">
             <EditPost :data="props.row" />
+            <ApprovalPost :data="props.row" />
           </q-td>
         </q-tr>
       </template>
@@ -122,11 +124,11 @@
 </template>
 
 <style lang="scss">
-  .btn-edit {
+  .btn-action {
     display: none;
   }
 
-  .tr-posts:hover .btn-edit {
+  .tr-posts:hover .btn-action {
     display: inline;
   }
 </style>
