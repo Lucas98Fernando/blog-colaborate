@@ -47,6 +47,7 @@ const columns: QTableProps["columns"] = [
     align: "center",
     label: "Ações",
     field: "actions",
+    headerStyle: "width: 150px",
   },
   // {
   //   name: "name",

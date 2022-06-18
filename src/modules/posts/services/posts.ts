@@ -41,16 +41,29 @@ class PostsServices {
     }
   }
 
-  async approvalPost(body: FormData, idPost: number): Promise<void> {
+  async approvalPost(idPost: number): Promise<void> {
     const { data, status }: AxiosResponse = await api.put(
-      `/post/approval/${idPost}`,
-      body
+      `/post/approval/${idPost}`
     );
     if (status === 200) {
       eventBus.emit("show-base-dialog", {
         title: "Postagem aprovada",
         type: "success",
         message: data.message,
+      });
+      eventBus.emit("fetch-posts");
+    }
+  }
+
+  async deletePost(idPost: number): Promise<void> {
+    const { status }: AxiosResponse = await api.delete(
+      `/post/delete/${idPost}`
+    );
+    if (status === 200) {
+      eventBus.emit("show-base-dialog", {
+        title: "Postagem excluída",
+        type: "success",
+        message: "Postagem excluída com sucesso!",
       });
       eventBus.emit("fetch-posts");
     }

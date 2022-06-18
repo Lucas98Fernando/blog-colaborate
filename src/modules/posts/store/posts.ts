@@ -18,5 +18,8 @@ export const usePostStore = defineStore("posts", {
     async ActionUpdatePost(body: FormData, idPost: number) {
       return await postsServices.updatePost(body, idPost);
     },
+    async ActionDeletePost(idPost: number) {
+      return await postsServices.deletePost(idPost);
+    },
   },
 });

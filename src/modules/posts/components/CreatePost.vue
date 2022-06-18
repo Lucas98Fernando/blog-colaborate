@@ -9,20 +9,13 @@
 
   const categoryStore = useCategoryStore();
   const { categories_all } = storeToRefs(categoryStore);
-
   const postStore = usePostStore();
-
   const form = ref<QForm | null>(null);
-
   const dialog = ref<boolean>(false);
-
   const categoryOptions = ref<QSelectOption[]>([]);
-
   const isSelectLoading = ref<boolean>(false);
   const isBtnLoading = ref<boolean>(false);
-
   const imagePost = ref<File>();
-
   const formData = reactive<PostCreateBody>({
     title: "",
     description: "",

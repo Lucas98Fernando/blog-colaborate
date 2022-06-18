@@ -7,6 +7,7 @@
   import ApprovalPost from "../components/ApprovalPost.vue";
   import { usePostStore } from "../store/posts";
   import eventBus from "@/helpers/eventBus";
+  import DeletePost from "../components/DeletePost.vue";
 
   const columns = postsColumns;
   const postsStore = usePostStore();
@@ -115,7 +116,11 @@
           </q-td>
           <q-td key="actions" :props="props">
             <EditPost :data="props.row" />
-            <ApprovalPost v-if="posts_by_user.isAdmin" :data="props.row" />
+            <ApprovalPost
+              v-if="posts_by_user.isAdmin && props.row.status === 1"
+              :data="props.row"
+            />
+            <DeletePost :data="props.row" />
           </q-td>
         </q-tr>
       </template>

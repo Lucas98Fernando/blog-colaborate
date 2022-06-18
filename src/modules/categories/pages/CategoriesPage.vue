@@ -7,7 +7,6 @@
 
   const categoriesStore = useCategoryStore();
   const { categories_all } = storeToRefs(categoriesStore);
-
   const filter = ref<string>("");
   const loading = ref<boolean>(true);
 
