@@ -4,9 +4,42 @@ import { PostResponse } from "../types/posts";
 import eventBus from "@/helpers/eventBus";
 
 class PostsServices {
+  async postsAll() {
+    const { data }: AxiosResponse<PostResponse> = await api("/post/get-all");
+    return data;
+  }
+
   async postsByUser() {
     const { data }: AxiosResponse<PostResponse> = await api(
       "/post/get-by-user"
+    );
+    return data;
+  }
+
+  async postsApproved() {
+    const { data }: AxiosResponse<PostResponse> = await api(
+      "/post/get-approved"
+    );
+    return data;
+  }
+
+  async postsApprovedByUser() {
+    const { data }: AxiosResponse<PostResponse> = await api(
+      "/post/get-approved-by-user"
+    );
+    return data;
+  }
+
+  async postsWaitingApproval() {
+    const { data }: AxiosResponse<PostResponse> = await api(
+      "/post/get-waiting-approval"
+    );
+    return data;
+  }
+
+  async postsWaitingApprovalByUser() {
+    const { data }: AxiosResponse<PostResponse> = await api(
+      "/post/get-waiting-approval-by-user"
     );
     return data;
   }

@@ -17,6 +17,10 @@ class Storage {
     localStorage.setItem("userInfo", JSON.stringify(payload));
   }
 
+  isAdmin(): boolean {
+    return this.localUserData().user.id_user_type === 1;
+  }
+
   removeAllLocalStorage(): void {
     localStorage.removeItem("userInfo");
     localStorage.removeItem("menu");

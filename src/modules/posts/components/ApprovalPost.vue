@@ -1,14 +1,25 @@
 <script lang="ts" setup>
   import { ref } from "vue";
+  import { usePostStore } from "../store/posts";
   import { Post } from "../types/posts";
 
   interface Props {
     data: Post;
   }
 
+  const postStore = usePostStore();
   const props = defineProps<Props>();
-
   const dialog = ref<boolean>(false);
+  const isBtnLoading = ref<boolean>(false);
+
+  async function approvalPost() {
+    try {
+      isBtnLoading.value = true;
+      await postStore.ActionApprovalPost(props.data.id);
+    } finally {
+      isBtnLoading.value = false;
+    }
+  }
 </script>
 
 <template>
@@ -41,6 +52,8 @@
           color="green"
           padding="4px 18px"
           rounded
+          :loading="isBtnLoading"
+          @click="approvalPost"
         />
       </q-card-actions>
     </q-card>

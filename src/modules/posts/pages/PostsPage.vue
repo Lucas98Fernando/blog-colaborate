@@ -8,6 +8,8 @@
   import { usePostStore } from "../store/posts";
   import eventBus from "@/helpers/eventBus";
   import DeletePost from "../components/DeletePost.vue";
+  import FilterPosts from "../components/FilterPosts.vue";
+  import storage from "@/helpers/storage";
 
   const columns = postsColumns;
   const postsStore = usePostStore();
@@ -18,9 +20,11 @@
 
   eventBus.addEventListener("fetch-posts", () => fetchPosts());
 
-  async function fetchPosts() {
+  function fetchPosts() {
     try {
-      await postsStore.ActionGetPostsByUser();
+      storage.isAdmin()
+        ? postsStore.ActionGetPostsAll()
+        : postsStore.ActionGetPostsByUser();
     } finally {
       loading.value = false;
     }
@@ -73,6 +77,11 @@
             <q-icon name="close" class="cursor-pointer" @click="filter = ''" />
           </template>
         </q-input>
+
+        <FilterPosts
+          @show-loading="loading = true"
+          @hide-loading="loading = false"
+        />
 
         <q-space />
 
