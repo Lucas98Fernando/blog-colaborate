@@ -22,6 +22,14 @@ const columns: QTableProps["columns"] = [
     field: "slug",
     sortable: true,
   },
+  {
+    name: "actions",
+    align: "center",
+    label: "Ações",
+    field: "actions",
+    sortable: true,
+    headerStyle: "width: 150px",
+  },
 ];
 
 export default columns;

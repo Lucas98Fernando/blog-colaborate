@@ -89,7 +89,7 @@
       </template>
 
       <template #body="props">
-        <q-tr :props="props" class="tr-posts">
+        <q-tr :props="props" class="tr-data-table">
           <q-td key="id" :props="props">
             {{ props.row.id }}
           </q-td>
@@ -136,13 +136,3 @@
     </q-table>
   </q-card>
 </template>
-
-<style lang="scss">
-  .btn-action {
-    display: none;
-  }
-
-  .tr-posts:hover .btn-action {
-    display: inline;
-  }
-</style>

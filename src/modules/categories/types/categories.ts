@@ -3,3 +3,12 @@ export type AllCategories = {
   name: string;
   slug: string;
 };
+
+export type CreateCategoriesBody = {
+  name: string;
+  slug: string;
+};
+
+export type ResetCategoiesFields = {
+  name: string;
+};

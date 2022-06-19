@@ -14,3 +14,9 @@ a {
 .card-rounded {
   border-radius: 20px !important;
 }
+.btn-action {
+  display: none;
+}
+.tr-data-table:hover .btn-action {
+  display: inline;
+}

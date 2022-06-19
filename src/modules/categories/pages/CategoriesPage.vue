@@ -4,13 +4,16 @@
   import { useCategoryStore } from "../store/categories";
   import { storeToRefs } from "pinia";
   import eventBus from "@/helpers/eventBus";
+  import CreateCategory from "../components/CreateCategory.vue";
+  import EditCategory from "../components/EditCategory.vue";
+  import DeleteCategory from "../components/DeleteCategory.vue";
 
   const categoriesStore = useCategoryStore();
   const { categories_all } = storeToRefs(categoriesStore);
   const filter = ref<string>("");
   const loading = ref<boolean>(true);
 
-  eventBus.addEventListener("fetch-posts", () => fetchCategories());
+  eventBus.addEventListener("fetch-categories", () => fetchCategories());
 
   async function fetchCategories() {
     try {
@@ -53,6 +56,26 @@
         </q-input>
 
         <q-space />
+
+        <create-category />
+      </template>
+
+      <template #body="props">
+        <q-tr :props="props" class="tr-data-table">
+          <q-td key="id" :props="props">
+            {{ props.row.id }}
+          </q-td>
+          <q-td key="name" :props="props">
+            {{ props.row.name }}
+          </q-td>
+          <q-td key="slug" :props="props">
+            {{ props.row.slug }}
+          </q-td>
+          <q-td key="actions" :props="props">
+            <edit-category :data="props.row" />
+            <delete-category :data="props.row" />
+          </q-td>
+        </q-tr>
       </template>
     </q-table>
   </q-card>
