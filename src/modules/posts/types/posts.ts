@@ -11,6 +11,8 @@ export type Post = {
   description: string;
   image: string;
   slug: string;
+  createdAt: Date;
+  updatedAt: Date;
   category: {
     id: number;
     name: string;

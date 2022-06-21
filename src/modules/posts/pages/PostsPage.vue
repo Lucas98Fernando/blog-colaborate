@@ -14,7 +14,6 @@
   const columns = postsColumns;
   const postsStore = usePostStore();
   const { posts_by_user } = storeToRefs(postsStore);
-
   const filter = ref<string>("");
   const loading = ref<boolean>(true);
 
