@@ -10,9 +10,9 @@
   const router = useRouter();
 
   function seeMore(props: Post) {
-    const keysToRemove = ["createdAt", "updatedAt", "category"];
-    const filterProps = Object.entries(props).filter(
-      ([key]) => !keysToRemove.includes(key)
+    const keysToKeep = ["id", "title", "slug"];
+    const filterProps = Object.entries(props).filter(([key]) =>
+      keysToKeep.includes(key)
     );
 
     let query = {};

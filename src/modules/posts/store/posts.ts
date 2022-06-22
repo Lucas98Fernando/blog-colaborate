@@ -13,6 +13,11 @@ export const usePostStore = defineStore("posts", {
       return data;
     },
 
+    async ActionGetPostById(idPost: number) {
+      const data = await postsServices.postById(idPost);
+      return data;
+    },
+
     async ActionGetPostsByUser() {
       const data = await postsServices.postsByUser();
       this.posts_by_user = data;

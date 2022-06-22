@@ -1,11 +1,18 @@
 import { api } from "@/http/api";
 import { AxiosResponse } from "axios";
-import { PostResponse } from "../types/posts";
+import { Post, PostResponse } from "../types/posts";
 import eventBus from "@/helpers/eventBus";
 
 class PostsServices {
   async postsAll() {
     const { data }: AxiosResponse<PostResponse> = await api("/post/get-all");
+    return data;
+  }
+
+  async postById(idPost: number) {
+    const { data }: AxiosResponse<Post> = await api(
+      `/post/get-by-id/${idPost}`
+    );
     return data;
   }
 
