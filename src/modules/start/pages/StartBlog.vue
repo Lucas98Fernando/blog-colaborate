@@ -31,18 +31,3 @@
     </div>
   </main>
 </template>
-
-<style lang="scss" scoped>
-  .main {
-    width: 100%;
-    max-width: 1920px;
-    margin: 0 auto;
-    padding: 1rem;
-    border: 2px solid red;
-    position: relative;
-    .container {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-    }
-  }
-</style>

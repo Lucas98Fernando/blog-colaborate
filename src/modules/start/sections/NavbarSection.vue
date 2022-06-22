@@ -1,9 +1,9 @@
 <template>
   <nav class="nav">
-    <div class="logo-wrapper">
+    <router-link class="logo-wrapper" to="/start">
       <img class="logo" src="/logo.png" alt="Logo" />
       <span class="title">Blog Colaborate</span>
-    </div>
+    </router-link>
     <div>
       <q-btn rounded color="primary" to="/auth/login">Entrar</q-btn>
     </div>

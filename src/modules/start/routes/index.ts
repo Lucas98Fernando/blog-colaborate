@@ -9,6 +9,14 @@ const HomeRoutes: Array<RouteRecordRaw> = [
     },
     component: () => import("../pages/StartBlog.vue"),
   },
+  {
+    path: "/view-post/:info*",
+    name: "ViewPost",
+    meta: {
+      title: "Visualizar postagem",
+    },
+    component: () => import("../pages/ViewPost.vue"),
+  },
 ];
 
 export default HomeRoutes;

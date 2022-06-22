@@ -10,7 +10,16 @@
   const router = useRouter();
 
   function seeMore(props: Post) {
-    router.push(`/post/${props}`);
+    const keysToRemove = ["createdAt", "updatedAt", "category"];
+    const filterProps = Object.entries(props).filter(
+      ([key]) => !keysToRemove.includes(key)
+    );
+
+    let query = {};
+
+    filterProps.forEach(([key, value]) => (query = { ...query, [key]: value }));
+
+    router.push({ path: "/view-post", query });
   }
 
   function addZeroIfNecessary(date: number) {

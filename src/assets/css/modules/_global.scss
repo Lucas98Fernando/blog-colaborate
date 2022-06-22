@@ -8,6 +8,25 @@ a {
   text-decoration: none;
   color: var(--q-primary);
 }
+a:active,
+a:focus {
+  outline: 0;
+  border: none;
+  outline-style: none;
+  -moz-outline-style: none;
+}
+.main {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 2px solid red;
+  position: relative;
+  .container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+}
 .card-base-dialog {
   width: 350px;
 }

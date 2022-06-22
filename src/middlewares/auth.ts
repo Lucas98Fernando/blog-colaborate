@@ -16,7 +16,7 @@ export default async function AuthMiddleware(
   ];
 
   if (!token && !guestRoutes.includes(String(to.name)))
-    return to.name === "Start"
+    return to.name === "Start" || to.name === "ViewPost"
       ? next()
       : router.replace({ name: guestRoutes[0] });
   if (token && guestRoutes.includes(String(to.name))) router.replace("/home");

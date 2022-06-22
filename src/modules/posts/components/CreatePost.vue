@@ -80,7 +80,7 @@
 <template>
   <q-btn color="primary" rounded @click="dialog = true">
     Nova postagem
-    <q-icon size="1.3rem" right name="add" />
+    <q-icon size="1.3rem" right name="post_add" />
   </q-btn>
   <q-dialog v-model="dialog" maximized>
     <q-card>

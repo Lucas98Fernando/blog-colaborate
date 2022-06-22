@@ -6,7 +6,11 @@
           Bem-vindo de volta ao Blog Colaborate!
         </span>
         <p>O seu portal de notícias para entusiatas de tecnlogia.</p>
-        <q-btn color="primary" rounded>
+        <q-btn class="q-mr-sm" color="primary" rounded to="/start">
+          Ir para o blog
+          <q-icon size="1.3rem" right name="newspaper" />
+        </q-btn>
+        <q-btn color="primary" rounded outline>
           Saiba mais
           <q-icon size="1.3rem" right name="call_made" />
         </q-btn>
